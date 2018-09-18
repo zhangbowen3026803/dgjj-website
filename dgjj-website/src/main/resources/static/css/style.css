@@ -67,7 +67,7 @@ ul.nav{
 	-moz-transition: all .7s ease 0s;
 	-o-transition: all .7s ease 0s;
 	-ms-transition: all .7s ease 0s;
-	padding: 8px 63px;
+	padding: 8px 40px;
 	font-weight: bold;
   border-bottom:1px solid #006491;
 }
@@ -875,7 +875,7 @@ responsive area
   	}
 }
 .nav-top-title{
-	font-size: 2.5rem;
+	font-size: 2.8rem;
 	padding-top:25px;
 }
 header .navbar-collapse{
