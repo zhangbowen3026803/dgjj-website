@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.dgjj.cloud.web.mapper.DgjjMarketMapper">
+ 
+  <select id="findList" parameterType="com.dgjj.cloud.web.form.DgjjMarketForm" resultType="com.dgjj.cloud.web.dto.DgjjMarketDto">
+   select
+        	DISTINCT IFNULL(tt.user_id,'') as "userId",
+        	IFNULL(t.id,'') as "id",
+        	IFNULL(t.id,'') as "marketId",
+        	IFNULL(t.techName,'') as "techName",
+        	IFNULL(t.driveNumber,'0') as "driveNumber",
+        	IFNULL(t.driveCash,'0') as "driveCash",
+        	IFNULL(t.transferProgress,'') as "transferProgress",
+        	IFNULL(t.transferProgressText,'') as "transferProgressText",
+        	IFNULL(t.techAppraise,'') as "techAppraise",
+        	IFNULL(t.attentionId,'') as "attentionId"
+		from(
+	        select 
+				a.id,
+				a.marketId,
+				a.techName,
+				a.techArea,
+				a.driveNumber,
+				a.driveCash,
+				a.techAppraise,
+				a.techAudit,
+				c.CODE AS "transferProgress",
+				c.VALUE AS "transferProgressText",
+				d.id AS "attentionId" 
+			from
+				(select
+					a.id AS "id",
+					a.id AS "marketId",
+					a.tech_name AS "techName",
+					a.tech_area AS "techArea",
+					a.tech_appraise AS "techAppraise",
+					a.transfer_progress AS "transferProgress",
+					a.tech_audit as "techAudit",
+					count( DISTINCT b.user_id ) AS "driveNumber",
+					sum( IFNULL( b.drive_cash, '0' ) ) AS "driveCash"
+				from
+					dgjj_market a
+					LEFT JOIN dgjj_cook_tech b ON a.id = b.market_id
+					group by a.id
+				) a
+	        left join sys_dict c on a.transferProgress = c.code and c.type='transfer_progress'
+	        left join dgjj_market_attention d on a.id = d.market_id
+	        <where>
+				a.techAudit = '0'
+			</where>
+	        group by a.techName
+        ) t left join dgjj_cook_tech tt on t.id = tt.market_id 
+       	<if test="userId != '' and userId != null">
+       		and tt.user_id = #{userId}
+       	</if>
+       	<where>
+	       	<if test="techArea != '' and techArea != null">
+	       		and t.techArea = #{techArea}
+	       	</if>
+	       	<if test="techName != '' and techName != null">
+	       		and t.techName like concat('%',#{techName},'%') ;
+	       	</if>
+       	</where>
+       	GROUP BY t.marketId
+        <if test="conFlg == 0">
+        	order by driveNumber
+        </if>
+        <if test="conFlg == 1">
+        	order by driveNumber desc
+        </if>
+        <if test="cashFlg == 0">
+        	order by driveCash
+        </if>
+        <if test="cashFlg == 1">
+        	order by driveCash desc
+        </if>
+        <if test="cashFlg == '' and conFlg == ''">
+        	order by createTime desc
+        </if>
+  </select>
+ 
+</mapper>
