@@ -1,0 +1,16 @@
+server.port: 6001
+
+###################  spring配置  ###################
+spring:
+  profiles:
+    active: dev
+  thymeleaf:
+    mode: HTML
+    cache: false
+  mvc:
+    view:
+      prefix: /templates
+  datasource:
+      url: jdbc:mysql://bj-cdb-n1xarcq3.sql.tencentcdb.com:63348/suiyi?useSSL=false&autoReconnect=true&tinyInt1isBit=false&useUnicode=true&characterEncoding=utf8
+      username: root
+      password: zbw3026803

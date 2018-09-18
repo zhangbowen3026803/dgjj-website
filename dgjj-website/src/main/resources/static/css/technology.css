@@ -1,0 +1,78 @@
+.navigation{
+    width:100%;
+    background-color:#eeeeee;
+    padding:10px 0;
+}
+.header-backup{
+    height:160px;
+}
+.navigation span{
+    color:#6e6e6e;
+}
+.news ul{
+    width:100%;
+    margin-top:20px;
+}
+.news ul li.newslist{
+    width:100%;
+    display: block;
+    float:left;
+    margin-bottom:20px;
+    cursor:pointer;
+}
+.news ul li.newslist>a>span{
+    width:20%;
+    float:left;
+}
+.news ul li.newslist .rightlistnews{
+    width:80%;
+    float:left;
+    text-align: left;
+}
+.news ul li.indexnewslist{
+    width:100%;
+    display: block;
+    float:left;
+    margin-bottom:25px;
+    cursor:pointer;
+}
+.news ul li.indexnewslist .rightlistnews{
+    width:80%;
+    float:left;
+    text-align: left;
+}
+.rightlistnews .newsTitle{
+    width:100%;
+    font-size: 16px;
+    display: block;
+    margin-left:15px;
+    font-weight: bold;
+}
+.rightlistnews .newsContent{
+    width:100%;
+    font-size: 12px;
+    margin-top:10px;
+    display: block;
+    margin-left:15px;
+}
+.right-date{
+    display: block;
+    width:100%;
+    font-size: 12px;
+    text-align: right;
+    color:#6e6e6e;
+}
+.introduction p{
+    text-align: left;
+    text-indent: 4ch;
+    font-size: 16px;
+}
+.left{
+    text-align: left;
+}
+.news p{
+    margin:20px 0;
+}
+.news p.left{
+    text-indent: 4ch;
+}
