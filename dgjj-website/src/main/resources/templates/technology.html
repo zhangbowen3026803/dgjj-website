@@ -105,7 +105,11 @@
 					<img th:if="${marketState.index} % 2 == 0" alt="" src="img/greendown.png"/>
 					<span th:text="${market.driveNumber}"></span>
 				</td>
-				<td style="text-align:center;border:1px solid white;" th:text="${market.driveCash}"></td>
+				<td style="text-align:center;border:1px solid white;">
+					<img th:if="${marketState.index} % 2 != 0" alt="" src="img/redup.png"/>
+					<img th:if="${marketState.index} % 2 == 0" alt="" src="img/greendown.png"/>
+					<span th:text="${market.driveCash}"></span>
+				</td>
 				<td style="text-align:center;border:1px solid white;" th:text="${market.transferProgressText}"></td>
 			</tr>
 			</tbody>
