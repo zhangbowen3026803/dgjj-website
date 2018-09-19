@@ -96,11 +96,15 @@
 				<th style="text-align:center;border:1px solid white;">交易方式</th>
 				</tr>
 			</thead>
-			<tbody style="background-color:black;color:white;" th:each="market,marketState:${list}">
+			<tbody id="tbo" style="background-color:black;" th:each="market,marketState:${list}">
 			<tr style="line-height:3rem;">
 				<td style="text-align:center;border:1px solid white;" th:text="${market.techName}"></td>
 				<td style="text-align:center;border:1px solid white;" th:text="${market.techAppraise}"></td>
-				<td style="text-align:center;border:1px solid white;" th:text="${market.driveNumber}"></td>
+				<td style="text-align:center;border:1px solid white;" >
+					<img th:if="${marketState.index} % 2 != 0" alt="" src="img/redup.png"/>
+					<img th:if="${marketState.index} % 2 == 0" alt="" src="img/greendown.png"/>
+					<span th:text="${market.driveNumber}"></span>
+				</td>
 				<td style="text-align:center;border:1px solid white;" th:text="${market.driveCash}"></td>
 				<td style="text-align:center;border:1px solid white;" th:text="${market.transferProgressText}"></td>
 			</tr>
@@ -145,19 +149,23 @@
 	<script src="js/smoothscroll.js"></script>
 	<script src="js/bootstrap.min.js"></script>
 	<script src="js/custom.js"></script>
+	
 	<script>
+	
 	 window.onload= function () {
 		var Tab = document.getElementById("Tab");
                 var trs = Tab.getElementsByTagName("tr");//是Tab下的tr行，所以使用的Tab.getElementsByTagName
-		for(var i = 0; i < trs.length;i++) {     //循环所有的行
-			if(i!=0){
-                if(i % 2 == 0) {                 //进行偶数判断，从而完成各行变色
-                    trs[i].style.color= "red";
-                }else{
-                	trs[i].style.color= "#30de30";
-                }
-            }
-		}
+			for(var i = 0; i < trs.length;i++) {     //循环所有的行
+				if(i==0){
+					trs[i].style.color= "white";
+					}else{
+		                if(i % 2 == 0) {                 //进行偶数判断，从而完成各行变色
+		                	trs[i].style.color= "red";
+		                }else{
+		                	trs[i].style.color= "#30de30";
+		                }
+					}
+			}
         };
 </script>
 </body>
