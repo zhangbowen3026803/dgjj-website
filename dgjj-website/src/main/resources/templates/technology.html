@@ -58,7 +58,6 @@
 									<li><a class="menu" href="news">新闻中心</a></li>
 									<li><a class="menu" href="college">蓝马甲商学院</a></li>
 									<li><a class="menu" href="introduction">平台简介</a></li>
-									<li><a class="menu" href="market">交易大盘</a></li>
 								</ul>
 							</div><!-- /navbar-collapse -->
 						</div><!-- / .container-fluid -->
@@ -83,9 +82,30 @@
 	<!-- about section -->
 	<section class="about text-center" style="margin-top:20px;">
 		<div class="container">
-			<div class="row">
-				<img src="img/tech1.png" width="100%"/>
-			</div>
+			<h3 style="text-align:center;height:10%;margin-top: 0px;margin-bottom: 0px;text-align:center;background-color:black;color:red;line-height:5rem;">
+			大 连 国 际 专 利 技 术 交 易 中 心</h3>
+			<table id="Tab" style="width:100%;">
+			
+			<thead>
+			
+				<tr style="background-color:#bd1414;color:white;line-height:5rem;">
+				<th style="width:20%;text-align:center;border:1px solid white;">技术名称</th>
+				<th style="text-align:center;border:1px solid white;">技术估值</th>
+				<th style="text-align:center;border:1px solid white;">驱动人数</th>
+				<th style="text-align:center;border:1px solid white;">驱动现额</th>
+				<th style="text-align:center;border:1px solid white;">交易方式</th>
+				</tr>
+			</thead>
+			<tbody style="background-color:black;color:white;" th:each="market,marketState:${list}">
+			<tr style="line-height:3rem;">
+				<td style="text-align:center;border:1px solid white;" th:text="${market.techName}"></td>
+				<td style="text-align:center;border:1px solid white;" th:text="${market.techAppraise}"></td>
+				<td style="text-align:center;border:1px solid white;" th:text="${market.driveNumber}"></td>
+				<td style="text-align:center;border:1px solid white;" th:text="${market.driveCash}"></td>
+				<td style="text-align:center;border:1px solid white;" th:text="${market.transferProgressText}"></td>
+			</tr>
+			</tbody>
+			</table>
 		</div>
 	</section><!-- end of about section -->
 
@@ -105,8 +125,8 @@
 			<div class="row">
 				<div class="col-xs-12 footer-para">
 					<p>国家技术转移东部中心大连分中心 &nbsp;&nbsp;&nbsp;&nbsp;版权所有</p>
-					<p>联系电话：0411-0000000</p>
-					<p>联系地址：辽宁省大连市高新园区佳创大厦15层</p>
+					<p>联系电话：0411-39363623</p>
+					<p>联系地址：辽宁省大连市甘井子区七贤路2号 嘉创大厦15楼</p>
 				</div>
 				<!-- <div class="col-xs-6 text-right">
 					<a href=""><i class="fa fa-facebook"></i></a>
@@ -125,6 +145,21 @@
 	<script src="js/smoothscroll.js"></script>
 	<script src="js/bootstrap.min.js"></script>
 	<script src="js/custom.js"></script>
+	<script>
+	 window.onload= function () {
+		var Tab = document.getElementById("Tab");
+                var trs = Tab.getElementsByTagName("tr");//是Tab下的tr行，所以使用的Tab.getElementsByTagName
+		for(var i = 0; i < trs.length;i++) {     //循环所有的行
+			if(i!=0){
+                if(i % 2 == 0) {                 //进行偶数判断，从而完成各行变色
+                    trs[i].style.color= "red";
+                }else{
+                	trs[i].style.color= "#30de30";
+                }
+            }
+		}
+        };
+</script>
 </body>
 
 </html>
